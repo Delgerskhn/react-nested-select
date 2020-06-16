@@ -1,0 +1,70 @@
+/* the whole container of component */
+#category-select {
+  position: relative;
+}
+
+#category-select div {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+#category-select .selected {
+  justify-content: center;
+}
+
+/* the div contains selected property */
+#category-select .apparent {
+  padding: 8px 21px;
+  height: 29px;
+}
+
+/* the div contains options */
+#category-select .options {
+  position: absolute;
+  top: 50px;
+  background: #fff;
+  max-height: 370px;
+  overflow-y: scroll;
+  z-index: 2;
+}
+
+#category-select .options:hover {
+  background: #fff;
+}
+
+#category-select .option .text {
+  padding: 12px;
+  border-bottom: 1px solid #dcdee3;
+  position: relative;
+}
+
+#category-select .arrow {
+  position: absolute;
+  right: 12px;
+  top: 14px;
+}
+
+#category-select .arrow img {
+  transition: transform 0.3s;
+}
+
+#category-select .search {
+  border: 0;
+  border-bottom: 1px solid #dcdee3;
+  padding: 13px 16px;
+}
+
+#category-select .ancestor {
+  color: #707070;
+  font-size: 11px;
+}
+
+#category-select .hover:hover {
+  background: #dcdee3;
+}
+
+#category-select .selbox {
+  border-radius: 5px;
+  border: 1px solid #dcdee3;
+}
