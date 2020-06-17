@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./src/Category.css";
 export default function Category(props) {
   const [cats, setCat] = useState([]);
-  const [selected, setSelected] = useState({ P: null, N: props.placeholder });
+  const [selected, setSelected] = useState({ P: null, N: props.defaultText });
   const [handleMenu, setHandleMenu] = useState(false);
   const [searchResult, setResult] = useState(false);
   useEffect(() => {
@@ -39,7 +39,7 @@ export default function Category(props) {
                   P: sub.P,
                   N: sub.N,
                   H: sub.H,
-                  A: (cat.A ? cat.A : cat.N) + (sub.H ? "/" + sub.N : ""),
+                  A: (cat.A ? cat.A : cat.N) + (sub.H ? " > " + sub.N : ""),
                 };
               })
             );
@@ -53,7 +53,7 @@ export default function Category(props) {
         ? matches.map((a) => {
             return { P: a.P, N: a.N, H: [], A: a.A };
           })
-        : [{ N: "Илэрц байхгүй" }]
+        : [{ N: props.notFound }]
     );
   };
   useEffect(() => {
@@ -97,7 +97,7 @@ export default function Category(props) {
         onClick={(e) => e.nativeEvent.stopImmediatePropagation()}
       >
         <input
-          placeholder={"Категориос хайх"}
+          placeholder={props.searchPlaceholder}
           className="search "
           type="text"
           onChange={(e) => inputHandle(e)}
@@ -127,7 +127,7 @@ function Options(props) {
     if (props.options) setOptions(props.options);
   }, [props.options]);
   const handleOptions = (i) => {
-    if (options[i].N != "Илэрц байхгүй") {
+    if (options[i].N != props.notFound) {
       let arr = options.slice(0);
       if (arr[i].H.length) arr[i].H = [];
       else if (props.realOptions[i].H && props.realOptions[i].H.length)
@@ -136,7 +136,7 @@ function Options(props) {
             N: opt.N,
             P: opt.P,
             H: [],
-            A: arr[i].A + (opt.H ? "/" + opt.N : ""),
+            A: arr[i].A + (opt.H ? " > " + opt.N : ""),
           };
         });
       else {

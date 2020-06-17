@@ -1,6 +1,6 @@
 {
   "name": "nested-select",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "A react select list which has search input and nested options to make selection more light",
   "main": "index.js",
   "scripts": {
