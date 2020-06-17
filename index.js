@@ -39,7 +39,7 @@ function Category(props) {
 
   var _useState3 = (0, _react.useState)({
     P: null,
-    N: props.placeholder
+    N: props.defaultText
   }),
       _useState4 = _slicedToArray(_useState3, 2),
       selected = _useState4[0],
@@ -107,7 +107,7 @@ function Category(props) {
                 P: sub.P,
                 N: sub.N,
                 H: sub.H,
-                A: (cat.A ? cat.A : cat.N) + (sub.H ? "/" + sub.N : "")
+                A: (cat.A ? cat.A : cat.N) + (sub.H ? " > " + sub.N : "")
               };
             }));
           }
@@ -124,7 +124,7 @@ function Category(props) {
         A: a.A
       };
     }) : [{
-      N: "Илэрц байхгүй"
+      N: props.notFound
     }]);
   };
 
@@ -179,7 +179,7 @@ function Category(props) {
       return e.nativeEvent.stopImmediatePropagation();
     }
   }, /*#__PURE__*/_react["default"].createElement("input", {
-    placeholder: "Категориос хайх",
+    placeholder: props.searchPlaceholder,
     className: "search ",
     type: "text",
     onChange: function onChange(e) {
@@ -214,14 +214,14 @@ function Options(props) {
   }, [props.options]);
 
   var handleOptions = function handleOptions(i) {
-    if (options[i].N != "Илэрц байхгүй") {
+    if (options[i].N != props.notFound) {
       var arr = options.slice(0);
       if (arr[i].H.length) arr[i].H = [];else if (props.realOptions[i].H && props.realOptions[i].H.length) arr[i].H = props.realOptions[i].H.map(function (opt) {
         return {
           N: opt.N,
           P: opt.P,
           H: [],
-          A: arr[i].A + (opt.H ? "/" + opt.N : "")
+          A: arr[i].A + (opt.H ? " > " + opt.N : "")
         };
       });else {
         props.setSelected(arr[i]);
